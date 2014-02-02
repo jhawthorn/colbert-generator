@@ -38,7 +38,7 @@ class Colbert
       command.concat %W[
       (
       -background transparent
-      -fill #CCCCCC -font #{FONT} -strokewidth 2 -stroke black -size #{TEXT_WIDTH}x#{TEXT_HEIGHT} -gravity center label:#{line}
+      -fill #CCCCCC -font #{FONT} -strokewidth 2 -stroke black -size #{TEXT_WIDTH}x#{TEXT_HEIGHT} -gravity center label:#{line.gsub(' ', '  ')}
       +distort Perspective #{perspective(i)}
       )
       ]
