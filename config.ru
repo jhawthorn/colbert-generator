@@ -35,7 +35,7 @@ class ColbertGenerator < Sinatra::Base
   end
 
   post '/generate' do
-    text = params.fetch('text')
+    text = params['text'] || []
     10.times do |i|
       text[i] = "grizzly bears" if !text[i] || text[i].empty?
     end
