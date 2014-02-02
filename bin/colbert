@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'colbert'
+
+output = ARGV.fetch(0)
+
+lines = (0...10).map do
+  STDIN.readline.strip
+end
+
+Colbert.new(lines).write_to(output)
+
