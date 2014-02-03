@@ -17,21 +17,7 @@ class ColbertGenerator < Sinatra::Base
   end
 
   get '/' do
-    <<-EOS
-    <form action="/generate" method="post">
-    <input type="text" name="text[]" value="Black Hole at Center of Galaxy"><br/>
-    <input type="text" name="text[]" value="Michael Adams"><br/>
-    <input type="text" name="text[]" value="Grizzly Bears"><br/>
-    <input type="text" name="text[]" value="Filliam H Muffman"><br/>
-    <input type="text" name="text[]" value="The Toronto Raptors"><br/>
-    <input type="text" name="text[]" value="The British Empire"><br/>
-    <input type="text" name="text[]" value='"Business Casual"'><br/>
-    <input type="text" name="text[]" value="Barbra Streisand"><br/>
-    <input type="text" name="text[]" value="Distractions"><br/>
-    <input type="text" name="text[]" value="You Know Who You Are"><br/>
-    <input type="submit">
-    </form>
-    EOS
+    redirect 'http://jhawthorn.github.io/colbert'
   end
 
   post '/generate' do
