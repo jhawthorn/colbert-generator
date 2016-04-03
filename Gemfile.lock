@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    imgur2 (1.2.1)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
@@ -15,5 +14,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  imgur2
   sinatra
+
+BUNDLED WITH
+   1.11.2

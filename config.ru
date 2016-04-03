@@ -1,17 +1,35 @@
 require 'sinatra/base'
-require 'imgur2'
 
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require 'colbert'
 
 class ColbertGenerator < Sinatra::Base
+  API_PUBLIC_KEY = 'Client-ID 9a635f414520be6'
+
+  def imgur_upload(image_path, text)
+    http = Net::HTTP.new('api.imgur.com', 443)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Post.new('/3/image/')
+    request.set_form_data(
+      image: File.read(image_path),
+      title: "You're On Notice!",
+      description: text.join("\n")
+    )
+    request.add_field('Authorization', API_PUBLIC_KEY)
+
+    response = http.request(request)
+    data = JSON.parse(response.body)
+
+    data['data']['link']
+  end
+
   def create_and_upload text
     file = Tempfile.new(%w[colbert .jpg])
     Colbert.new(text).write_to(file.path)
 
-    client = Imgur2.new '65aea9a07b4f6110c90248ffa247d41a'
-    response = client.upload(file)
-    response['upload']['links']['original']
+    imgur_upload(file.path, text)
   ensure
     file.close! if file
   end
@@ -32,4 +50,3 @@ class ColbertGenerator < Sinatra::Base
 end
 
 run ColbertGenerator
-
