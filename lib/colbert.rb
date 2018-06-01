@@ -47,7 +47,7 @@ class Colbert
     command.concat %W[-layers merge #{file_path}]
 
     p command
-    system *command
+    system(*command)
   end
 
   private

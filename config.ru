@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'net/http'
 require 'json'
 
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
